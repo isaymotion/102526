@@ -1,0 +1,1089 @@
+<!doctype html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Case Rehearsal</title>
+<meta name="description" content="Rehearse a psychiatry case presentation and Q&amp;A offline: flashcards, mock grilling, presentation timer, notes and key numbers.">
+<meta name="theme-color" id="meta-theme" content="#10c6fb">
+<meta name="color-scheme" content="light dark">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Rehearse">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<script>
+  (function () {
+    var t = 'auto';
+    try { var v = JSON.parse(localStorage.getItem('rehearse:v1:theme')); if (v === 'light' || v === 'dark') t = v; } catch (e) {}
+    document.documentElement.setAttribute('data-theme', t);
+  })();
+</script>
+<style>
+:root {
+  --bg: #eaf7fd;
+  --surface: #ffffff;
+  --surface-2: #f3f9fc;
+  --text: #13233a;
+  --muted: #56677d;
+  --border: #d3e5ef;
+  --header-bg: #10c6fb;
+  --header-text: #0b1630;
+  --header-btn: rgba(255,255,255,.35);
+  --header-btn-hover: rgba(255,255,255,.55);
+  --accent: #077fae;
+  --accent-text: #ffffff;
+  --accent-soft: #dff4fd;
+  --pink: #d63384;
+  --pink-strong: #ec4f9b;
+  --pink-soft: #fde4f1;
+  --ok: #1a8a4a;
+  --ok-soft: #dcf5e6;
+  --warn: #a86b00;
+  --warn-soft: #fff1d1;
+  --bad: #c9303b;
+  --bad-soft: #fde0e2;
+  --mark: #ffe58a;
+  --shadow: 0 1px 2px rgba(13,40,70,.06), 0 4px 14px rgba(13,40,70,.06);
+  --focus: #ec4f9b;
+  --fs: 1;
+  --tabbar-h: 62px;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0a1430;
+    --surface: #12204a;
+    --surface-2: #182a59;
+    --text: #e9f2fc;
+    --muted: #a3b5cd;
+    --border: #253a6b;
+    --header-bg: #0e1b3f;
+    --header-text: #e9f2fc;
+    --header-btn: rgba(255,255,255,.08);
+    --header-btn-hover: rgba(255,255,255,.16);
+    --accent: #4fd3ff;
+    --accent-text: #0a1430;
+    --accent-soft: #163a66;
+    --pink: #ff8cc4;
+    --pink-strong: #ff7ab8;
+    --pink-soft: #3d1f45;
+    --ok: #5fd68f;
+    --ok-soft: #12382a;
+    --warn: #ffc44d;
+    --warn-soft: #3b2f12;
+    --bad: #ff7a83;
+    --bad-soft: #43182a;
+    --mark: #7a5d00;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 18px rgba(0,0,0,.25);
+    --focus: #ff8cc4;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0a1430;
+  --surface: #12204a;
+  --surface-2: #182a59;
+  --text: #e9f2fc;
+  --muted: #a3b5cd;
+  --border: #253a6b;
+  --header-bg: #0e1b3f;
+  --header-text: #e9f2fc;
+  --header-btn: rgba(255,255,255,.08);
+  --header-btn-hover: rgba(255,255,255,.16);
+  --accent: #4fd3ff;
+  --accent-text: #0a1430;
+  --accent-soft: #163a66;
+  --pink: #ff8cc4;
+  --pink-strong: #ff7ab8;
+  --pink-soft: #3d1f45;
+  --ok: #5fd68f;
+  --ok-soft: #12382a;
+  --warn: #ffc44d;
+  --warn-soft: #3b2f12;
+  --bad: #ff7a83;
+  --bad-soft: #43182a;
+  --mark: #7a5d00;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 18px rgba(0,0,0,.25);
+  --focus: #ff8cc4;
+  color-scheme: dark;
+}
+:root[data-theme="light"] { color-scheme: light; }
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-tap-highlight-color: transparent;
+  overflow-x: hidden;
+}
+h1, h2, h3 { line-height: 1.25; margin: 0; }
+p { margin: 0 0 .5em; }
+button, input, select { font: inherit; color: inherit; }
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; border-radius: 8px; }
+.sr-only { position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+.skip { position: absolute; left: 8px; top: -60px; z-index: 100; background: var(--surface); color: var(--text); padding: 10px 14px; border-radius: 10px; }
+.skip:focus { top: calc(8px + env(safe-area-inset-top)); }
+svg.i { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+/* ---------- Shell ---------- */
+.app { min-height: 100vh; min-height: 100dvh; }
+.col { min-width: 0; }
+.topbar {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--header-bg); color: var(--header-text);
+  padding: env(safe-area-inset-top) max(8px, env(safe-area-inset-right)) 0 max(8px, env(safe-area-inset-left));
+  box-shadow: 0 1px 0 rgba(0,0,0,.06);
+}
+.topbar-in { display: flex; align-items: center; gap: 4px; min-height: 56px; }
+.hbtn {
+  width: 44px; height: 44px; border-radius: 12px; border: 0; background: transparent;
+  display: inline-flex; align-items: center; justify-content: center; cursor: pointer; color: inherit; flex: none;
+  text-decoration: none;
+}
+.hbtn:hover { background: var(--header-btn); }
+.hbtn[aria-disabled="true"] { opacity: .35; cursor: default; background: transparent; }
+.htitle { flex: 1; min-width: 0; font-weight: 700; font-size: 1.05rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 4px; }
+.hsearch { display: none; position: relative; flex: 0 1 300px; min-width: 0; }
+.hsearch input {
+  width: 100%; height: 40px; border-radius: 12px; border: 0; padding: 0 12px 0 36px;
+  background: var(--header-btn); color: var(--header-text);
+}
+.hsearch input::placeholder { color: var(--header-text); opacity: .7; }
+.hsearch input:focus { background: var(--surface); color: var(--text); outline: 3px solid var(--focus); }
+.hsearch svg { position: absolute; left: 10px; top: 10px; width: 20px; height: 20px; pointer-events: none; }
+.theme-btn { width: auto; padding: 0 10px; gap: 6px; font-size: .85rem; font-weight: 600; }
+.theme-btn .tlabel { display: none; }
+
+.nav {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 30;
+  background: var(--surface); border-top: 1px solid var(--border);
+  padding: 0 env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+.nav .brand { display: none; }
+.nav ul { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, 1fr); }
+.nav a {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+  height: var(--tabbar-h); min-width: 44px; text-decoration: none; color: var(--muted);
+  font-size: .7rem; font-weight: 600; position: relative;
+}
+.nav a[aria-current="page"] { color: var(--pink); }
+.nav a[aria-current="page"]::before { content: ""; position: absolute; top: 0; left: 25%; right: 25%; height: 3px; border-radius: 0 0 3px 3px; background: var(--pink-strong); }
+
+main {
+  padding: 16px max(16px, env(safe-area-inset-right)) calc(var(--tabbar-h) + env(safe-area-inset-bottom) + 16px) max(16px, env(safe-area-inset-left));
+  max-width: 1200px; margin: 0 auto; outline: none;
+}
+.view[hidden] { display: none; }
+.view-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 12px; margin: 4px 0 12px; }
+.view-head h1 { font-size: 1.5rem; }
+.sub { color: var(--muted); font-size: .9rem; }
+
+/* ---------- Common bits ---------- */
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; box-shadow: var(--shadow); padding: 16px; min-width: 0; }
+.card + .card { margin-top: 14px; }
+.card h2 { font-size: 1.1rem; margin-bottom: 8px; }
+.btn {
+  min-height: 44px; padding: 10px 16px; border-radius: 12px; border: 1px solid var(--border);
+  background: var(--surface-2); color: var(--text); cursor: pointer; font-weight: 600;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px; text-decoration: none; text-align: center;
+}
+.btn:hover { filter: brightness(.97); }
+.btn.primary { background: var(--accent); color: var(--accent-text); border-color: transparent; }
+.btn.pink { background: var(--pink-strong); color: #fff; border-color: transparent; }
+.btn.ok { background: var(--ok-soft); color: var(--ok); border-color: transparent; }
+.btn.bad { background: var(--bad-soft); color: var(--bad); border-color: transparent; }
+.btn.ghost { background: transparent; }
+.btn.danger { color: var(--bad); }
+.btn[disabled] { opacity: .45; cursor: default; }
+.btn.big { min-height: 52px; font-size: 1.05rem; padding: 12px 20px; }
+.row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.row.spread { justify-content: space-between; }
+.grow { flex: 1 1 auto; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 12px; }
+.chip {
+  min-height: 40px; padding: 6px 14px; border-radius: 999px; border: 1px solid var(--border);
+  background: var(--surface); color: var(--text); cursor: pointer; font-size: .9rem; font-weight: 600;
+}
+.chip[aria-pressed="true"] { background: var(--pink-soft); border-color: var(--pink-strong); color: var(--pink); }
+.seg { display: inline-flex; flex-wrap: wrap; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; background: var(--surface-2); }
+.seg button { min-height: 44px; min-width: 56px; padding: 6px 14px; border: 0; background: transparent; cursor: pointer; font-weight: 600; }
+.seg button[aria-pressed="true"] { background: var(--accent); color: var(--accent-text); }
+.badge { display: inline-block; font-size: .75rem; font-weight: 700; padding: 3px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent); }
+.badge.pink { background: var(--pink-soft); color: var(--pink); }
+.counts { display: flex; gap: 6px; flex-wrap: wrap; }
+.count { font-size: .8rem; font-weight: 700; padding: 4px 10px; border-radius: 999px; }
+.count.new { background: var(--accent-soft); color: var(--accent); }
+.count.rev { background: var(--warn-soft); color: var(--warn); }
+.count.got { background: var(--ok-soft); color: var(--ok); }
+.dot { width: 10px; height: 10px; border-radius: 50%; flex: none; background: var(--border); margin-top: 7px; }
+.dot.rev { background: var(--warn); }
+.dot.got { background: var(--ok); }
+.dot.new { background: var(--accent); }
+.reading { font-size: calc(1rem * var(--fs)); overflow-wrap: anywhere; }
+.reading li { margin: .35em 0; }
+.reading ul { padding-left: 1.25em; margin: .4em 0; }
+mark { background: var(--mark); color: inherit; border-radius: 3px; padding: 0 1px; }
+.alert { border-radius: 12px; padding: 12px 14px; background: var(--bad-soft); color: var(--text); border: 1px solid var(--bad); margin: 10px 0; }
+.alert ul { margin: 6px 0 0; padding-left: 1.2em; }
+.info { border-radius: 12px; padding: 12px 14px; background: var(--accent-soft); margin: 10px 0; }
+.empty { text-align: center; color: var(--muted); padding: 24px 8px; }
+
+/* ---------- Flashcards ---------- */
+.split { display: grid; gap: 14px; }
+.list-pane { display: none; }
+.list-pane.open { display: block; }
+.qlist { list-style: none; margin: 0; padding: 6px; }
+.qitem {
+  width: 100%; display: flex; gap: 10px; align-items: flex-start; text-align: left;
+  min-height: 44px; padding: 8px 10px; border: 0; border-radius: 12px; background: transparent; cursor: pointer; overflow-wrap: anywhere;
+}
+.qitem:hover { background: var(--surface-2); }
+.qitem[aria-current="true"] { background: var(--pink-soft); }
+.qcard { padding: 20px; }
+.qcard .q { font-size: calc(1.3rem * var(--fs)); margin: 10px 0 14px; overflow-wrap: anywhere; }
+.answer { border-top: 1px dashed var(--border); padding-top: 10px; margin-top: 6px; }
+.tip { margin-top: 10px; padding: 10px 12px; border-radius: 12px; background: var(--pink-soft); }
+.ref { margin-top: 8px; color: var(--muted); font-size: .9rem; }
+.card-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 16px; }
+.card-actions .full { grid-column: 1 / -1; }
+.pager { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-top: 12px; }
+
+/* ---------- Grill ---------- */
+.grill-card { padding: 22px; text-align: left; transition: background .2s; }
+.grill-q { font-size: calc(1.6rem * var(--fs)); font-weight: 700; line-height: 1.3; margin: 12px 0 18px; overflow-wrap: anywhere; }
+.countdown { display: flex; align-items: center; gap: 14px; }
+.countdown .cd-num { font-size: 2.6rem; font-weight: 800; font-variant-numeric: tabular-nums; min-width: 3ch; }
+.countdown .track { flex: 1; height: 12px; border-radius: 99px; background: var(--surface-2); border: 1px solid var(--border); overflow: hidden; }
+.countdown .fill { height: 100%; background: var(--accent); border-radius: 99px; transition: width .2s linear; }
+.countdown.low .cd-num { color: var(--warn); }
+.countdown.low .fill { background: var(--warn); }
+.countdown.done .cd-num { color: var(--bad); }
+.timeup { font-weight: 800; color: var(--bad); }
+@keyframes flash { 0%, 100% { background: var(--surface); } 50% { background: var(--pink-soft); border-color: var(--pink-strong); } }
+.flash { animation: flash .45s ease-in-out 4; }
+@media (prefers-reduced-motion: reduce) { .flash { animation: none; background: var(--pink-soft); } }
+.score { font-weight: 800; font-size: 1.1rem; }
+
+/* ---------- Timer ---------- */
+.tgrid .card + .card, .split .card + .card { margin-top: 0; }
+.tgrid { display: grid; gap: 14px; grid-template-areas: "clock" "prompter" "list"; }
+.clock { grid-area: clock; }
+.prompter { grid-area: prompter; }
+.seclist-card { grid-area: list; }
+.big-time { font-size: 3.4rem; font-weight: 800; font-variant-numeric: tabular-nums; line-height: 1.1; }
+.st-ok { color: var(--ok); }
+.st-warn { color: var(--warn); }
+.st-bad { color: var(--bad); }
+.bar { height: 10px; border-radius: 99px; background: var(--surface-2); border: 1px solid var(--border); overflow: hidden; margin: 8px 0; }
+.bar > span { display: block; height: 100%; width: 0; border-radius: 99px; background: var(--ok); }
+.bar.warn > span { background: var(--warn); }
+.bar.bad > span { background: var(--bad); }
+.tcontrols { display: grid; grid-template-columns: 1fr 1.4fr 1fr; gap: 8px; margin-top: 12px; }
+.overall { margin-top: 12px; padding-top: 12px; border-top: 1px dashed var(--border); }
+.overall .t { font-size: 1.4rem; font-weight: 800; font-variant-numeric: tabular-nums; }
+.prompt-scroll { max-height: 55vh; overflow-y: auto; -webkit-overflow-scrolling: touch; padding-right: 4px; }
+.prompt-scroll ul { font-size: calc(1.3rem * var(--fs)); line-height: 1.5; padding-left: 1.2em; margin: 0; }
+.prompt-scroll li { margin: .5em 0; }
+.seclist { list-style: none; margin: 0; padding: 0; }
+.secbtn {
+  width: 100%; display: grid; grid-template-columns: 1fr auto; gap: 2px 10px; text-align: left; align-items: center;
+  min-height: 48px; padding: 8px 10px; border: 0; border-radius: 12px; background: transparent; cursor: pointer;
+}
+.secbtn:hover { background: var(--surface-2); }
+.secbtn[aria-current="true"] { background: var(--pink-soft); }
+.secbtn .nm { font-weight: 600; overflow-wrap: anywhere; }
+.secbtn .tm { font-variant-numeric: tabular-nums; font-size: .9rem; }
+.wl { font-size: .8rem; color: var(--muted); margin-top: 8px; }
+
+/* ---------- Notes ---------- */
+.note-sec { scroll-margin-top: calc(80px + env(safe-area-inset-top)); }
+.note-sec h2 { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 10px; align-items: baseline; }
+.note-sec.hl { outline: 3px solid var(--pink-strong); outline-offset: 2px; }
+.fsctl { display: inline-flex; align-items: center; gap: 6px; }
+.fsctl .pct { min-width: 4ch; text-align: center; font-weight: 700; font-variant-numeric: tabular-nums; }
+
+/* ---------- Numbers ---------- */
+.num-group { margin-bottom: 18px; }
+.num-group h2 { font-size: 1.05rem; margin: 0 0 8px; color: var(--pink); }
+.num-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 150px), 1fr)); gap: 10px; }
+.num { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 10px 12px; box-shadow: var(--shadow); min-width: 0; overflow-wrap: anywhere; }
+.num .lb { font-size: .8rem; color: var(--muted); font-weight: 600; }
+.num .vl { font-size: calc(1.15rem * var(--fs)); font-weight: 800; }
+.num .nt { font-size: .85rem; color: var(--muted); }
+
+/* ---------- Search ---------- */
+.psearch { position: relative; margin-bottom: 12px; }
+.psearch input { width: 100%; height: 48px; border-radius: 14px; border: 1px solid var(--border); background: var(--surface); padding: 0 14px 0 42px; font-size: 1rem; }
+.psearch svg { position: absolute; left: 12px; top: 13px; color: var(--muted); }
+.res-group h2 { font-size: 1rem; margin: 14px 0 8px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em; }
+.res { display: block; width: 100%; text-align: left; border: 1px solid var(--border); background: var(--surface); border-radius: 14px; padding: 12px; margin-bottom: 8px; cursor: pointer; min-height: 44px; overflow-wrap: anywhere; color: var(--text); }
+.res:hover { border-color: var(--accent); }
+.res .t { font-weight: 700; }
+.res .s { color: var(--muted); font-size: .9rem; margin-top: 2px; }
+.res.static { cursor: default; }
+
+/* ---------- Settings ---------- */
+.set-grid { display: grid; gap: 14px; }
+.set-grid .card + .card { margin-top: 0; }
+.kv { color: var(--muted); font-size: .9rem; }
+.case-title { font-size: 1.1rem; font-weight: 700; overflow-wrap: anywhere; }
+.welcome { display: flex; gap: 14px; align-items: center; }
+.welcome img { border-radius: 16px; flex: none; }
+
+/* ---------- Footer credit ---------- */
+.credit { text-align: center; color: var(--muted); font-size: .8rem; margin: 32px auto 8px; padding-top: 16px; border-top: 1px solid var(--border); max-width: 420px; }
+.credit .logo { display: block; margin: 0 auto 8px; border-radius: 14px; }
+.credit p { margin: 2px 0; }
+.credit a { color: var(--muted); }
+
+.toast { position: fixed; left: 50%; transform: translateX(-50%); bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom) + 12px); z-index: 50; background: var(--text); color: var(--bg); padding: 10px 14px; border-radius: 12px; box-shadow: var(--shadow); display: flex; gap: 10px; align-items: center; max-width: calc(100vw - 32px); }
+.toast[hidden] { display: none; }
+.toast button { background: transparent; border: 1px solid currentColor; color: inherit; border-radius: 10px; min-height: 36px; padding: 4px 10px; cursor: pointer; font-weight: 700; }
+
+/* ---------- Wide layout (iPad / desktop) ---------- */
+@media (min-width: 768px) {
+  .app { display: grid; grid-template-columns: 220px minmax(0, 1fr); }
+  .nav {
+    position: sticky; top: 0; bottom: auto; right: auto; height: 100vh; height: 100dvh;
+    border-top: 0; border-right: 1px solid var(--border);
+    padding: calc(12px + env(safe-area-inset-top)) 10px 12px max(10px, env(safe-area-inset-left));
+    overflow-y: auto;
+  }
+  .nav .brand { display: flex; align-items: center; gap: 10px; padding: 4px 8px 16px; font-weight: 800; font-size: 1.05rem; color: var(--text); text-decoration: none; }
+  .nav .brand img { border-radius: 10px; }
+  .nav ul { display: flex; flex-direction: column; gap: 4px; }
+  .nav a { flex-direction: row; justify-content: flex-start; gap: 12px; height: 48px; padding: 0 12px; border-radius: 12px; font-size: .95rem; }
+  .nav a:hover { background: var(--surface-2); }
+  .nav a[aria-current="page"] { background: var(--pink-soft); }
+  .nav a[aria-current="page"]::before { display: none; }
+  main { padding: 20px 24px 24px; }
+  .toast { bottom: 20px; }
+  .hsearch { display: block; }
+  .hsearch-icon { display: none; }
+  .theme-btn .tlabel { display: inline; }
+  .psearch { display: none; }
+  .split { grid-template-columns: minmax(240px, 34%) minmax(0, 1fr); align-items: start; }
+  .list-pane, .list-pane.open { display: block; position: sticky; top: 76px; max-height: calc(100dvh - 96px); overflow-y: auto; padding: 4px; }
+  .list-toggle { display: none !important; }
+  .tgrid { grid-template-columns: minmax(280px, 40%) minmax(0, 1fr); grid-template-areas: "clock prompter" "list prompter"; align-items: start; }
+  .prompter { position: sticky; top: 76px; }
+  .prompt-scroll { max-height: calc(100dvh - 190px); }
+  .set-grid { grid-template-columns: 1fr 1fr; }
+  .set-grid .wide { grid-column: 1 / -1; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="app">
+  <nav class="nav" id="nav" aria-label="Sections">
+    <a class="brand" href="#/cards"><img src="icon-192.png" alt="" width="36" height="36">Case Rehearsal</a>
+    <ul>
+      <li><a href="#/cards" data-route="cards"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="14" height="14" rx="2"/><path d="M7 3h12a2 2 0 0 1 2 2v12"/></svg><span>Cards</span></a></li>
+      <li><a href="#/grill" data-route="grill"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/><path d="M10 9.5a2 2 0 1 1 2.8 1.8c-.5.3-.8.7-.8 1.2v.5"/><path d="M12 16h.01"/></svg><span>Grill</span></a></li>
+      <li><a href="#/timer" data-route="timer"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6"/></svg><span>Timer</span></a></li>
+      <li><a href="#/notes" data-route="notes"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M9 11h7M9 15h7M9 7h4"/></svg><span>Notes</span></a></li>
+      <li><a href="#/numbers" data-route="numbers"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 9h14M5 15h14M10 4 8 20M16 4l-2 16"/></svg><span>Numbers</span></a></li>
+      <li><a href="#/load" data-route="load"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg><span>Case</span></a></li>
+    </ul>
+  </nav>
+  <div class="col">
+    <header class="topbar">
+      <div class="topbar-in">
+        <a class="hbtn" id="btn-back" href="#" role="button" aria-label="Back" aria-disabled="true"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg></a>
+        <a class="hbtn" id="btn-fwd" href="#" role="button" aria-label="Forward" aria-disabled="true"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
+        <div class="htitle" id="htitle">Case Rehearsal</div>
+        <div class="hsearch" role="search">
+          <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <input type="search" id="hsearch" placeholder="Search Q&amp;A, notes, numbers" aria-label="Search Q&amp;A, notes and numbers" autocomplete="off" enterkeyhint="search">
+        </div>
+        <a class="hbtn hsearch-icon" href="#/search" aria-label="Search"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></a>
+        <button class="hbtn theme-btn" id="btn-theme" type="button" aria-label="Theme: Auto. Tap to change."></button>
+      </div>
+    </header>
+    <main id="main" tabindex="-1">
+      <section class="view" data-view="cards" hidden></section>
+      <section class="view" data-view="grill" hidden></section>
+      <section class="view" data-view="timer" hidden></section>
+      <section class="view" data-view="notes" hidden></section>
+      <section class="view" data-view="numbers" hidden></section>
+      <section class="view" data-view="search" hidden></section>
+      <section class="view" data-view="load" hidden></section>
+      <div id="credit"></div>
+    </main>
+  </div>
+</div>
+<input type="file" id="file-input" class="sr-only" accept=".json,application/json" tabindex="-1" aria-hidden="true">
+<div id="live" class="sr-only" aria-live="assertive" aria-atomic="true"></div>
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script>
+'use strict';
+const VERSION = 'rehearse-2026-10-25-1'; // keep in sync with sw.js
+
+/* ---------------- Storage (always wrapped) ---------------- */
+const K = { caseData: 'rehearse:v1:case', progress: 'rehearse:v1:progress', theme: 'rehearse:v1:theme', prefs: 'rehearse:v1:prefs', navmax: 'rehearse:v1:navmax' };
+const store = {
+  get(k) { try { const v = localStorage.getItem(k); return v == null ? null : JSON.parse(v); } catch (e) { return null; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch (e) { return false; } },
+  del(k) { try { localStorage.removeItem(k); } catch (e) {} }
+};
+const sstore = {
+  get(k) { try { return sessionStorage.getItem(k); } catch (e) { return null; } },
+  set(k, v) { try { sessionStorage.setItem(k, v); } catch (e) {} }
+};
+
+/* ---------------- Helpers ---------------- */
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const reEsc = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+function hl(text, q) {
+  const t = String(text == null ? '' : text);
+  if (!q) return esc(t);
+  const parts = t.split(new RegExp('(' + reEsc(q) + ')', 'ig'));
+  return parts.map((p, i) => (i % 2 ? '<mark>' + esc(p) + '</mark>' : esc(p))).join('');
+}
+function fmt(ms) {
+  const neg = ms < 0; let s = Math.floor(Math.abs(ms) / 1000);
+  const m = Math.floor(s / 60); s = s % 60;
+  return (neg ? '-' : '') + String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+}
+function announce(msg) { const l = $('#live'); l.textContent = ''; setTimeout(() => { l.textContent = msg; }, 30); }
+let toastTimer = null;
+function toast(msg, actionLabel, action) {
+  const t = $('#toast');
+  t.innerHTML = '<span>' + esc(msg) + '</span>' + (actionLabel ? '<button type="button">' + esc(actionLabel) + '</button>' : '');
+  t.hidden = false;
+  if (actionLabel) $('button', t).addEventListener('click', action);
+  clearTimeout(toastTimer);
+  if (!actionLabel) toastTimer = setTimeout(() => { t.hidden = true; }, 3500);
+}
+const ICON = {
+  sun: '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>',
+  moon: '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>',
+  auto: '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"/></svg>',
+  search: '<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>'
+};
+
+/* ---------------- Case validation (schema v1) ---------------- */
+function validateCase(obj) {
+  const errs = [];
+  const isStr = (v) => typeof v === 'string';
+  const isStrArr = (v) => Array.isArray(v) && v.every(isStr);
+  if (!obj || typeof obj !== 'object' || Array.isArray(obj)) return { ok: false, errors: ['The file is not a JSON object ({ ... }).'] };
+  if (obj.v !== 1) errs.push('"v" must be 1 (this app reads case files of schema version 1).');
+  if (!isStr(obj.title) || !obj.title.trim()) errs.push('"title" must be a non-empty string.');
+  if (obj.presenter != null && !isStr(obj.presenter)) errs.push('"presenter" must be a string.');
+  if (obj.date != null && !isStr(obj.date)) errs.push('"date" must be a string.');
+  const ids = new Set();
+  if (!Array.isArray(obj.sections)) errs.push('"sections" must be a list ([ ... ]).');
+  else obj.sections.forEach((s, i) => {
+    const w = 'sections[' + i + ']';
+    if (!s || typeof s !== 'object') { errs.push(w + ' must be an object.'); return; }
+    if (!isStr(s.id) || !s.id) errs.push(w + ': "id" must be a non-empty string.');
+    else if (ids.has(s.id)) errs.push(w + ': duplicate id "' + s.id + '".'); else ids.add(s.id);
+    if (!isStr(s.title)) errs.push(w + ': "title" must be a string.');
+    if (typeof s.minutes !== 'number' || !isFinite(s.minutes) || s.minutes < 0) errs.push(w + ': "minutes" must be a number of 0 or more (e.g. 1.5).');
+    if (!isStrArr(s.notes)) errs.push(w + ': "notes" must be a list of strings.');
+  });
+  if (!Array.isArray(obj.qa)) errs.push('"qa" must be a list ([ ... ]).');
+  else obj.qa.forEach((q, i) => {
+    const w = 'qa[' + i + ']';
+    if (!q || typeof q !== 'object') { errs.push(w + ' must be an object.'); return; }
+    if (!isStr(q.id) || !q.id) errs.push(w + ': "id" must be a non-empty string.');
+    else if (ids.has(q.id)) errs.push(w + ': duplicate id "' + q.id + '".'); else ids.add(q.id);
+    if (!isStr(q.cat) || !q.cat.trim()) errs.push(w + ': "cat" must be a non-empty string.');
+    if (!isStr(q.q) || !q.q.trim()) errs.push(w + ': "q" must be a non-empty string.');
+    if (!isStrArr(q.a)) errs.push(w + ': "a" must be a list of strings.');
+    if (q.tip != null && !isStr(q.tip)) errs.push(w + ': "tip" must be a string if present.');
+    if (q.ref != null && !isStr(q.ref)) errs.push(w + ': "ref" must be a string if present.');
+  });
+  if (obj.numbers != null) {
+    if (!Array.isArray(obj.numbers)) errs.push('"numbers" must be a list ([ ... ]).');
+    else obj.numbers.forEach((g, i) => {
+      const w = 'numbers[' + i + ']';
+      if (!g || typeof g !== 'object') { errs.push(w + ' must be an object.'); return; }
+      if (!isStr(g.group)) errs.push(w + ': "group" must be a string.');
+      if (!Array.isArray(g.items)) errs.push(w + ': "items" must be a list.');
+      else g.items.forEach((it, j) => {
+        const w2 = w + '.items[' + j + ']';
+        if (!it || typeof it !== 'object') { errs.push(w2 + ' must be an object.'); return; }
+        if (!isStr(it.label)) errs.push(w2 + ': "label" must be a string.');
+        if (!isStr(it.value)) errs.push(w2 + ': "value" must be a string.');
+        if (it.note != null && !isStr(it.note)) errs.push(w2 + ': "note" must be a string if present.');
+      });
+    });
+  }
+  if (errs.length) return { ok: false, errors: errs.slice(0, 12).concat(errs.length > 12 ? ['…and ' + (errs.length - 12) + ' more.'] : []) };
+  const data = {
+    v: 1, title: obj.title.trim(), presenter: obj.presenter || '', date: obj.date || '',
+    sections: obj.sections.map((s) => ({ id: s.id, title: s.title, minutes: s.minutes, notes: s.notes.slice() })),
+    qa: obj.qa.map((q) => ({ id: q.id, cat: q.cat.trim(), q: q.q, a: q.a.slice(), tip: q.tip || '', ref: q.ref || '' })),
+    numbers: (obj.numbers || []).map((g) => ({ group: g.group, items: g.items.map((it) => ({ label: it.label, value: it.value, note: it.note || '' })) }))
+  };
+  return { ok: true, data };
+}
+
+/* ---------------- State ---------------- */
+let CASE = null;
+let PROG = { caseKey: '', box: {}, timer: null };
+let PREFS = { fs: 1, grillSec: 45 };
+let loadMsg = null; // {type:'error'|'ok', html}
+
+function caseKeyOf(c) { return c ? c.title + '|' + c.qa.length + '|' + c.sections.length : ''; }
+function saveProg() { store.set(K.progress, PROG); }
+function savePrefs() { store.set(K.prefs, PREFS); }
+
+(function initState() {
+  const p = store.get(K.prefs);
+  if (p && typeof p === 'object') {
+    if (typeof p.fs === 'number' && p.fs >= 0.8 && p.fs <= 1.8) PREFS.fs = p.fs;
+    if ([30, 45, 60, 90].includes(p.grillSec)) PREFS.grillSec = p.grillSec;
+  }
+  const c = store.get(K.caseData);
+  if (c) { const r = validateCase(c); if (r.ok) CASE = r.data; }
+  const pr = store.get(K.progress);
+  if (pr && typeof pr === 'object' && pr.box && typeof pr.box === 'object') PROG = { caseKey: pr.caseKey || '', box: pr.box, timer: pr.timer || null };
+  if (CASE && PROG.caseKey !== caseKeyOf(CASE)) PROG = { caseKey: caseKeyOf(CASE), box: {}, timer: null };
+  applyFs();
+})();
+
+function setCase(data) {
+  CASE = data;
+  const saved = store.set(K.caseData, data);
+  if (PROG.caseKey !== caseKeyOf(data)) { PROG = { caseKey: caseKeyOf(data), box: {}, timer: null }; saveProg(); }
+  resetTransient();
+  return saved;
+}
+function resetTransient() {
+  cardsSt.id = null; cardsSt.cat = 'All'; cardsSt.revealed = false;
+  grillStop(); grill.active = false; grill.cats = null; grill.asked = 0; grill.correct = 0; grill.used = [];
+  timerPause(); T.idx = 0; T.el = CASE ? CASE.sections.map(() => 0) : [];
+  if (CASE && PROG.timer && Array.isArray(PROG.timer.el) && PROG.timer.el.length === CASE.sections.length) {
+    T.el = PROG.timer.el.map((x) => (typeof x === 'number' && x >= 0 ? x : 0));
+    T.idx = Math.min(Math.max(0, PROG.timer.idx | 0), CASE.sections.length - 1);
+  }
+}
+
+/* ---------------- Theme ---------------- */
+function getTheme() { const t = store.get(K.theme); return t === 'light' || t === 'dark' ? t : 'auto'; }
+function effectiveDark(t) { return t === 'dark' || (t === 'auto' && window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches); }
+function applyTheme(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  $('#meta-theme').setAttribute('content', effectiveDark(t) ? '#0e1b3f' : '#10c6fb');
+  const b = $('#btn-theme');
+  const label = t === 'auto' ? 'Auto' : t === 'light' ? 'Light' : 'Dark';
+  b.innerHTML = (t === 'auto' ? ICON.auto : t === 'light' ? ICON.sun : ICON.moon) + '<span class="tlabel">' + label + '</span>';
+  b.setAttribute('aria-label', 'Theme: ' + label + '. Tap to change.');
+  b.title = 'Theme: ' + label;
+}
+function setTheme(t) { if (t === 'auto') store.set(K.theme, 'auto'); else store.set(K.theme, t); applyTheme(t); if (route.r === 'load') renderLoad(); }
+$('#btn-theme').addEventListener('click', () => { const t = getTheme(); setTheme(t === 'auto' ? 'light' : t === 'light' ? 'dark' : 'auto'); });
+if (window.matchMedia) { try { matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => applyTheme(getTheme())); } catch (e) {} }
+applyTheme(getTheme());
+
+function applyFs() { document.documentElement.style.setProperty('--fs', String(PREFS.fs)); }
+function changeFs(d) { PREFS.fs = Math.round(Math.min(1.8, Math.max(0.8, PREFS.fs + d)) * 10) / 10; applyFs(); savePrefs(); $$('.fsctl .pct').forEach((e) => { e.textContent = Math.round(PREFS.fs * 100) + '%'; }); }
+function fsCtl() {
+  return '<span class="fsctl" role="group" aria-label="Text size"><button class="btn" type="button" data-action="fs-" aria-label="Smaller text">A−</button><span class="pct" aria-live="polite">' + Math.round(PREFS.fs * 100) + '%</span><button class="btn" type="button" data-action="fs+" aria-label="Larger text">A+</button></span>';
+}
+
+/* ---------------- Credit footer ---------------- */
+$('#credit').outerHTML = '<footer class="credit"><img class="logo" src="icon-192.png" alt="Case Rehearsal app icon" width="56" height="56"><p>Web app developed in 2026 by Isabella Navarro, MD.</p><p>Latest version ' + VERSION + '.</p><p><a href="mailto:isaymotion@gmail.com">isaymotion@gmail.com</a></p></footer>';
+
+/* ---------------- Routing with back/forward tracking ---------------- */
+const ROUTES = ['cards', 'grill', 'timer', 'notes', 'numbers', 'search', 'load'];
+const TITLES = { cards: 'Flashcards', grill: 'Grill mode', timer: 'Presentation timer', notes: 'Notes / script', numbers: 'Key numbers', search: 'Search', load: 'Case & settings' };
+const NEEDS_CASE = ['cards', 'grill', 'timer', 'notes', 'numbers', 'search'];
+let route = { r: '', params: new URLSearchParams() };
+let navIdx = 0, navMax = 0;
+
+function parseHash() {
+  const h = location.hash.replace(/^#\/?/, '');
+  const qi = h.indexOf('?');
+  const path = qi >= 0 ? h.slice(0, qi) : h;
+  const params = new URLSearchParams(qi >= 0 ? h.slice(qi + 1) : '');
+  const r = path.split('/')[0];
+  return { r: ROUTES.includes(r) ? r : '', params };
+}
+function hashFor(r, params) {
+  let h = '#/' + r;
+  if (params) { const s = new URLSearchParams(params).toString(); if (s) h += '?' + s; }
+  return h;
+}
+function go(r, params) {
+  const h = hashFor(r, params);
+  if (location.hash === h) { render(); return; }
+  location.hash = h;
+}
+function replaceRoute(r, params) {
+  history.replaceState({ idx: navIdx }, '', hashFor(r, params));
+}
+function updateNavBtns() {
+  $('#btn-back').setAttribute('aria-disabled', navIdx <= 0 ? 'true' : 'false');
+  $('#btn-fwd').setAttribute('aria-disabled', navIdx >= navMax ? 'true' : 'false');
+}
+function saveNavMax() { sstore.set(K.navmax, String(navMax)); }
+window.addEventListener('hashchange', () => {
+  const st = history.state;
+  if (st && typeof st.idx === 'number') { navIdx = st.idx; }
+  else { navIdx = navIdx + 1; navMax = navIdx; history.replaceState({ idx: navIdx }, '', location.href); saveNavMax(); }
+  render();
+});
+$('#btn-back').addEventListener('click', (e) => { e.preventDefault(); if (navIdx > 0) history.back(); });
+$('#btn-fwd').addEventListener('click', (e) => { e.preventDefault(); if (navIdx < navMax) history.forward(); });
+
+function render() {
+  route = parseHash();
+  if (!route.r) { replaceRoute(CASE ? 'cards' : 'load'); route = parseHash(); }
+  if (!CASE && NEEDS_CASE.includes(route.r)) { replaceRoute('load'); route = parseHash(); }
+  const r = route.r;
+  if (r !== 'grill') grillStop();
+  $$('.view').forEach((v) => { v.hidden = v.dataset.view !== r; });
+  $$('#nav a[data-route]').forEach((a) => { if (a.dataset.route === r) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current'); });
+  $('#htitle').textContent = TITLES[r] || 'Case Rehearsal';
+  updateNavBtns();
+  const fn = { cards: renderCards, grill: renderGrill, timer: renderTimer, notes: renderNotes, numbers: renderNumbers, search: renderSearch, load: renderLoad }[r];
+  const prevView = render.last;
+  render.last = r;
+  fn();
+  if (prevView !== r && !(r === 'notes' && route.params.get('id'))) window.scrollTo(0, 0);
+  if (r !== 'search') { const hs = $('#hsearch'); if (document.activeElement !== hs) hs.value = ''; }
+}
+
+/* ---------------- Flashcards (simple Leitner) ---------------- */
+const cardsSt = { cat: 'All', id: null, revealed: false, listOpen: false };
+function boxOf(id) { return PROG.box[id] || 0; } // 0 new, 1 review, 2-3 got it
+function stat(id) { const b = boxOf(id); return b === 0 ? 'new' : b === 1 ? 'rev' : 'got'; }
+function cats() { const s = []; CASE.qa.forEach((q) => { if (!s.includes(q.cat)) s.push(q.cat); }); return s; }
+function filteredQA() { return cardsSt.cat === 'All' ? CASE.qa : CASE.qa.filter((q) => q.cat === cardsSt.cat); }
+function nextCardId(list, afterId) {
+  if (!list.length) return null;
+  const prio = (q) => { const b = boxOf(q.id); return b === 1 ? 0 : b === 0 ? 1 : b; };
+  const start = Math.max(0, list.findIndex((q) => q.id === afterId) + 1);
+  const ordered = list.slice(start).concat(list.slice(0, start)).filter((q) => q.id !== afterId || list.length === 1);
+  let best = null;
+  ordered.forEach((q) => { if (!best || prio(q) < prio(best)) best = q; });
+  return best ? best.id : null;
+}
+function renderCards() {
+  const v = $('[data-view="cards"]');
+  const pid = route.params.get('id');
+  if (pid && CASE.qa.some((q) => q.id === pid) && pid !== cardsSt.id) {
+    cardsSt.id = pid; cardsSt.revealed = route.params.get('show') === '1';
+    if (cardsSt.cat !== 'All' && !filteredQA().some((q) => q.id === pid)) cardsSt.cat = 'All';
+  }
+  const list = filteredQA();
+  if (!list.some((q) => q.id === cardsSt.id)) { cardsSt.id = nextCardId(list, null); cardsSt.revealed = false; }
+  const all = CASE.qa;
+  const n = { new: 0, rev: 0, got: 0 };
+  all.forEach((q) => { n[stat(q.id)]++; });
+  const cur = list.find((q) => q.id === cardsSt.id);
+  const pos = cur ? list.indexOf(cur) + 1 : 0;
+  let html = '<div class="view-head"><h1>Flashcards</h1><div class="counts" aria-label="Progress"><span class="count new">New ' + n.new + '</span><span class="count rev">Review ' + n.rev + '</span><span class="count got">Got it ' + n.got + '</span></div></div>';
+  html += '<div class="chips" role="group" aria-label="Filter by category">' + ['All'].concat(cats()).map((c) => '<button type="button" class="chip" data-action="card-cat" data-cat="' + esc(c) + '" aria-pressed="' + (c === cardsSt.cat) + '">' + esc(c) + '</button>').join('') + '</div>';
+  html += '<div class="split"><div class="card list-pane' + (cardsSt.listOpen ? ' open' : '') + '" id="qlist-pane"><ol class="qlist" aria-label="Questions">' + list.map((q) => '<li><button type="button" class="qitem" data-action="card-open" data-id="' + esc(q.id) + '" aria-current="' + (q.id === cardsSt.id) + '"><span class="dot ' + stat(q.id) + '" aria-hidden="true"></span><span>' + esc(q.q) + '<span class="sr-only"> (' + ({ new: 'new', rev: 'review', got: 'got it' }[stat(q.id)]) + ')</span></span></button></li>').join('') + '</ol></div>';
+  html += '<div class="card-pane">';
+  if (!cur) html += '<div class="card empty">No questions in this category.</div>';
+  else {
+    const st = stat(cur.id);
+    html += '<article class="card qcard" aria-labelledby="qtext"><div class="row spread"><span class="badge pink">' + esc(cur.cat) + '</span><span class="sub">' + pos + ' of ' + list.length + ' · <span class="count ' + st + '">' + ({ new: 'New', rev: 'Review', got: 'Got it' }[st]) + '</span></span></div>';
+    html += '<h2 class="q" id="qtext">' + esc(cur.q) + '</h2>';
+    if (cardsSt.revealed) {
+      html += '<div class="answer reading"><ul>' + cur.a.map((x) => '<li>' + esc(x) + '</li>').join('') + '</ul>' + (cur.tip ? '<div class="tip"><strong>Tip:</strong> ' + esc(cur.tip) + '</div>' : '') + (cur.ref ? '<div class="ref">Ref: ' + esc(cur.ref) + '</div>' : '') + '</div>';
+      html += '<div class="card-actions"><button type="button" class="btn bad big" data-action="card-review">Review again</button><button type="button" class="btn ok big" data-action="card-got">Got it</button></div>';
+    } else {
+      html += '<div class="card-actions"><button type="button" class="btn primary big full" data-action="card-show" id="btn-show">Show answer</button></div>';
+    }
+    html += '<div class="pager"><button type="button" class="btn ghost" data-action="card-prev" aria-label="Previous question">‹ Prev</button><button type="button" class="btn ghost list-toggle" data-action="card-list" aria-expanded="' + cardsSt.listOpen + '" aria-controls="qlist-pane">' + (cardsSt.listOpen ? 'Hide list' : 'Question list') + '</button><button type="button" class="btn ghost" data-action="card-next" aria-label="Next question">Next ›</button></div>';
+    html += '</article>';
+  }
+  html += '</div></div>';
+  v.innerHTML = html;
+}
+function cardMark(good) {
+  const id = cardsSt.id; if (!id) return;
+  const b = boxOf(id);
+  PROG.box[id] = good ? Math.min(3, Math.max(2, b + 1)) : 1;
+  saveProg();
+  cardsSt.id = nextCardId(filteredQA(), id); cardsSt.revealed = false;
+  if (route.params.get('id')) replaceRoute('cards');
+  route = parseHash();
+  renderCards();
+  const sb = $('#btn-show'); if (sb) sb.focus({ preventScroll: true });
+}
+function cardStep(d) {
+  const list = filteredQA(); if (!list.length) return;
+  const i = list.findIndex((q) => q.id === cardsSt.id);
+  cardsSt.id = list[(i + d + list.length) % list.length].id; cardsSt.revealed = false;
+  if (route.params.get('id')) { replaceRoute('cards'); route = parseHash(); }
+  renderCards();
+}
+
+/* ---------------- Grill mode ---------------- */
+const grill = { cats: null, active: false, qid: null, endAt: 0, int: null, revealed: false, timeUp: false, asked: 0, correct: 0, used: [], scored: false };
+let audioCtx = null;
+function unlockAudio() {
+  try { const AC = window.AudioContext || window.webkitAudioContext; if (AC && !audioCtx) audioCtx = new AC(); if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume(); } catch (e) { audioCtx = null; }
+}
+function beep() {
+  try {
+    if (!audioCtx) return;
+    const t0 = audioCtx.currentTime;
+    [0, 0.28].forEach((off) => {
+      const o = audioCtx.createOscillator(), g = audioCtx.createGain();
+      o.type = 'sine'; o.frequency.value = 880;
+      g.gain.setValueAtTime(0.0001, t0 + off); g.gain.exponentialRampToValueAtTime(0.25, t0 + off + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, t0 + off + 0.2);
+      o.connect(g); g.connect(audioCtx.destination); o.start(t0 + off); o.stop(t0 + off + 0.22);
+    });
+  } catch (e) {}
+}
+function grillCats() { if (!grill.cats) grill.cats = cats().slice(); return grill.cats; }
+function grillPool() { const cs = grillCats(); return CASE.qa.filter((q) => cs.includes(q.cat)); }
+function grillStop() { if (grill.int) { clearInterval(grill.int); grill.int = null; } }
+function grillNext() {
+  const pool = grillPool();
+  if (!pool.length) { toast('Pick at least one category.'); return; }
+  let avail = pool.filter((q) => !grill.used.includes(q.id) && q.id !== grill.qid);
+  if (!avail.length) { grill.used = []; avail = pool.filter((q) => q.id !== grill.qid); if (!avail.length) avail = pool; }
+  const q = avail[Math.floor(Math.random() * avail.length)];
+  grill.qid = q.id; grill.used.push(q.id); grill.revealed = false; grill.timeUp = false; grill.scored = false; grill.active = true;
+  grill.endAt = Date.now() + PREFS.grillSec * 1000;
+  grillStop();
+  renderGrill();
+  window.scrollTo(0, 0);
+  grill.int = setInterval(grillTick, 200);
+  grillTick();
+}
+function grillTick() {
+  const left = Math.max(0, grill.endAt - Date.now());
+  const el = $('#cd'); if (!el) return;
+  const secs = Math.ceil(left / 1000);
+  $('.cd-num', el).textContent = secs;
+  $('.fill', el).style.width = (left / (PREFS.grillSec * 1000) * 100) + '%';
+  el.classList.toggle('low', secs <= 10 && secs > 0);
+  if (left <= 0) {
+    grillStop(); grill.timeUp = true; el.classList.add('done');
+    const card = $('#grill-card'); if (card) { card.classList.remove('flash'); void card.offsetWidth; card.classList.add('flash'); }
+    try { if (navigator.vibrate) navigator.vibrate([200, 100, 200]); } catch (e) {}
+    beep();
+    const tu = $('#timeup'); if (tu) tu.textContent = "Time's up!";
+    announce("Time's up");
+  }
+}
+function renderGrill() {
+  const v = $('[data-view="grill"]');
+  const cs = grillCats();
+  let html = '<div class="view-head"><h1>Grill mode</h1><div class="score" aria-live="polite">Score ' + grill.correct + ' / ' + grill.asked + '</div></div>';
+  if (!grill.active) {
+    html += '<div class="card"><h2>Mock Q&amp;A</h2><p class="sub">A random question appears with a countdown. Answer out loud, then reveal and score yourself honestly.</p>';
+    html += '<h3 class="sub" style="margin:12px 0 6px">Categories</h3><div class="chips" role="group" aria-label="Categories to ask">' + cats().map((c) => '<button type="button" class="chip" data-action="grill-cat" data-cat="' + esc(c) + '" aria-pressed="' + cs.includes(c) + '">' + esc(c) + '</button>').join('') + '</div>';
+    html += '<div class="row" style="margin-bottom:6px"><button type="button" class="btn ghost" data-action="grill-all">Select all</button><button type="button" class="btn ghost" data-action="grill-none">Clear</button></div>';
+    html += '<h3 class="sub" style="margin:12px 0 6px">Seconds per question</h3>' + secSeg('grill-sec');
+    html += '<div style="margin-top:16px"><button type="button" class="btn pink big" data-action="grill-start" style="width:100%">Start grilling (' + grillPool().length + ' questions)</button></div></div>';
+  } else {
+    const q = CASE.qa.find((x) => x.id === grill.qid);
+    const left = Math.max(0, grill.endAt - Date.now());
+    const secs = grill.timeUp ? 0 : Math.ceil(left / 1000);
+    html += '<article class="card grill-card" id="grill-card"><div class="row spread"><span class="badge pink">' + esc(q.cat) + '</span><span class="timeup" id="timeup">' + (grill.timeUp ? "Time's up!" : '') + '</span></div>';
+    html += '<p class="grill-q">' + esc(q.q) + '</p>';
+    html += '<div class="countdown' + (grill.timeUp ? ' done' : '') + '" id="cd" role="timer" aria-label="Seconds left"><span class="cd-num">' + secs + '</span><div class="track"><div class="fill" style="width:' + (left / (PREFS.grillSec * 1000) * 100) + '%"></div></div></div>';
+    if (grill.revealed) {
+      html += '<div class="answer reading" style="margin-top:14px"><ul>' + q.a.map((x) => '<li>' + esc(x) + '</li>').join('') + '</ul>' + (q.tip ? '<div class="tip"><strong>Tip:</strong> ' + esc(q.tip) + '</div>' : '') + (q.ref ? '<div class="ref">Ref: ' + esc(q.ref) + '</div>' : '') + '</div>';
+      if (!grill.scored) html += '<div class="card-actions"><button type="button" class="btn bad big" data-action="grill-miss">Missed it</button><button type="button" class="btn ok big" data-action="grill-hit">Nailed it</button><button type="button" class="btn ghost full" data-action="grill-next">Skip (no score)</button></div>';
+      else html += '<div class="card-actions"><button type="button" class="btn primary big full" data-action="grill-next">Next question</button></div>';
+    } else {
+      html += '<div class="card-actions"><button type="button" class="btn primary big full" data-action="grill-reveal" id="btn-reveal">Reveal answer</button><button type="button" class="btn ghost full" data-action="grill-next">Next question</button></div>';
+    }
+    html += '<div class="row" style="margin-top:12px;justify-content:flex-end"><button type="button" class="btn ghost" data-action="grill-end">End session</button></div></article>';
+  }
+  v.innerHTML = html;
+}
+function secSeg(action) {
+  return '<div class="seg" role="group" aria-label="Seconds per question">' + [30, 45, 60, 90].map((s) => '<button type="button" data-action="' + action + '" data-sec="' + s + '" aria-pressed="' + (PREFS.grillSec === s) + '">' + s + ' s</button>').join('') + '</div>';
+}
+
+/* ---------------- Presentation timer ---------------- */
+const T = { running: false, idx: 0, el: [], last: 0, int: null, persistAt: 0 };
+let wakeLock = null;
+async function requestWake() {
+  try { if ('wakeLock' in navigator && !wakeLock) { wakeLock = await navigator.wakeLock.request('screen'); wakeLock.addEventListener('release', () => { wakeLock = null; }); } } catch (e) { wakeLock = null; }
+}
+function releaseWake() { try { if (wakeLock) wakeLock.release(); } catch (e) {} wakeLock = null; }
+document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && T.running) requestWake(); });
+function budgetMs(i) { return CASE.sections[i].minutes * 60000; }
+function totalBudget() { return CASE.sections.reduce((a, s) => a + s.minutes * 60000, 0); }
+function totalEl() { return T.el.reduce((a, b) => a + b, 0); }
+function stClass(el, budget) { if (budget <= 0) return el > 0 ? 'bad' : 'ok'; const r = el / budget; return r > 1 ? 'bad' : r >= 0.8 ? 'warn' : 'ok'; }
+function timerAccum() { if (T.running) { const now = Date.now(); T.el[T.idx] += now - T.last; T.last = now; } }
+function timerPersist() { PROG.timer = { idx: T.idx, el: T.el.map((x) => Math.round(x)) }; saveProg(); }
+function timerStart() { if (!CASE.sections.length) return; T.running = true; T.last = Date.now(); clearInterval(T.int); T.int = setInterval(timerTick, 250); requestWake(); timerUpdate(); }
+function timerPause() { timerAccum(); T.running = false; clearInterval(T.int); T.int = null; releaseWake(); if (CASE) timerPersist(); if (route.r === 'timer') timerUpdate(); }
+function timerTick() { timerAccum(); if (Date.now() - T.persistAt > 3000) { T.persistAt = Date.now(); timerPersist(); } if (route.r === 'timer') timerUpdate(); }
+function timerGo(i) { timerAccum(); T.idx = Math.min(Math.max(0, i), CASE.sections.length - 1); timerPersist(); renderTimer(); const p = $('#prompt-scroll'); if (p) p.scrollTop = 0; }
+function timerReset() { if (!confirm('Reset all section times to 00:00?')) return; const was = T.running; timerPause(); T.el = CASE.sections.map(() => 0); T.idx = 0; timerPersist(); renderTimer(); if (was) announce('Timer reset'); }
+function timerUpdate() {
+  const v = $('[data-view="timer"]'); if (!CASE || !$('#t-sec', v)) return;
+  const b = budgetMs(T.idx), e = T.el[T.idx];
+  const c = stClass(e, b);
+  const ts = $('#t-sec'); ts.textContent = fmt(e); ts.className = 'big-time st-' + c;
+  const sb = $('#t-sec-bar'); sb.className = 'bar ' + c; $('span', sb).style.width = Math.min(100, b ? e / b * 100 : 100) + '%';
+  $('#t-sec-left').textContent = b - e >= 0 ? fmt(b - e) + ' left' : fmt(e - b) + ' over';
+  const tb = totalBudget(), te = totalEl(), tc = stClass(te, tb);
+  const ta = $('#t-all'); ta.textContent = fmt(te); ta.className = 't st-' + tc;
+  const ab = $('#t-all-bar'); ab.className = 'bar ' + tc; $('span', ab).style.width = Math.min(100, tb ? te / tb * 100 : 100) + '%';
+  const sbtn = $('#t-start'); sbtn.textContent = T.running ? 'Pause' : (te > 0 ? 'Resume' : 'Start'); sbtn.setAttribute('aria-pressed', String(T.running));
+  $$('.secbtn .tm', v).forEach((el, i) => { el.textContent = fmt(T.el[i]) + ' / ' + fmt(budgetMs(i)); el.className = 'tm st-' + (T.el[i] > 0 ? stClass(T.el[i], budgetMs(i)) : 'none'); });
+  const wl = $('#t-wl'); if (wl) wl.textContent = 'wakeLock' in navigator ? (T.running ? (wakeLock ? 'Screen will stay awake while the timer runs.' : 'Screen stay-awake requested.') : 'Screen stays awake while the timer runs.') : 'Tip: this browser cannot keep the screen awake — turn off Auto-Lock while presenting.';
+}
+function renderTimer() {
+  const v = $('[data-view="timer"]');
+  if (T.el.length !== CASE.sections.length) { T.el = CASE.sections.map(() => 0); T.idx = 0; }
+  if (!CASE.sections.length) { v.innerHTML = '<div class="view-head"><h1>Presentation timer</h1></div><div class="card empty">This case has no sections.</div>'; return; }
+  const s = CASE.sections[T.idx];
+  let html = '<div class="view-head"><h1>Presentation timer</h1><span class="sub">Total budget ' + fmt(totalBudget()) + '</span></div><div class="tgrid">';
+  html += '<div class="card clock"><div class="sub">Section ' + (T.idx + 1) + ' of ' + CASE.sections.length + '</div><h2 style="margin:2px 0 6px;overflow-wrap:anywhere">' + esc(s.title) + '</h2>';
+  html += '<div id="t-sec" class="big-time" role="timer" aria-label="Section elapsed">00:00</div><div class="sub">Budget ' + fmt(budgetMs(T.idx)) + ' · <span id="t-sec-left"></span></div><div class="bar" id="t-sec-bar"><span></span></div>';
+  html += '<div class="tcontrols"><button type="button" class="btn" data-action="t-prev" ' + (T.idx === 0 ? 'disabled' : '') + ' aria-label="Previous section">‹ Prev</button><button type="button" class="btn primary big" id="t-start" data-action="t-toggle">Start</button><button type="button" class="btn" data-action="t-next" ' + (T.idx >= CASE.sections.length - 1 ? 'disabled' : '') + ' aria-label="Next section">Next ›</button></div>';
+  html += '<div class="overall"><div class="row spread"><span class="sub">Overall</span><span><span id="t-all" class="t">00:00</span> <span class="sub">/ ' + fmt(totalBudget()) + '</span></span></div><div class="bar" id="t-all-bar"><span></span></div>';
+  html += '<div class="row spread"><span class="wl" id="t-wl"></span><button type="button" class="btn ghost danger" data-action="t-reset">Reset</button></div></div></div>';
+  html += '<div class="card prompter"><div class="row spread" style="margin-bottom:8px"><h2 style="margin:0">Speaker notes</h2>' + fsCtl() + '</div><div class="prompt-scroll" id="prompt-scroll" tabindex="0" aria-label="Speaker notes for ' + esc(s.title) + '">' + (s.notes.length ? '<ul>' + s.notes.map((n) => '<li>' + esc(n) + '</li>').join('') + '</ul>' : '<p class="sub">No notes for this section.</p>') + '</div></div>';
+  html += '<div class="card seclist-card"><h2>Sections</h2><ol class="seclist">' + CASE.sections.map((x, i) => '<li><button type="button" class="secbtn" data-action="t-go" data-i="' + i + '" aria-current="' + (i === T.idx) + '"><span class="nm">' + (i + 1) + '. ' + esc(x.title) + '</span><span class="tm"></span></button></li>').join('') + '</ol></div>';
+  html += '</div>';
+  v.innerHTML = html;
+  timerUpdate();
+}
+
+/* ---------------- Notes ---------------- */
+function renderNotes() {
+  const v = $('[data-view="notes"]');
+  let html = '<div class="view-head"><h1>Notes / script</h1>' + fsCtl() + '</div>';
+  html += '<p class="sub" style="margin-bottom:12px">' + esc(CASE.title) + (CASE.presenter ? ' · ' + esc(CASE.presenter) : '') + (CASE.date ? ' · ' + esc(CASE.date) : '') + '</p>';
+  if (!CASE.sections.length) html += '<div class="card empty">No sections in this case.</div>';
+  CASE.sections.forEach((s, i) => {
+    html += '<section class="card note-sec" id="note-' + esc(s.id) + '"><h2><span>' + (i + 1) + '. ' + esc(s.title) + '</span><span class="badge">' + s.minutes + ' min</span></h2><div class="reading">' + (s.notes.length ? '<ul>' + s.notes.map((n) => '<li>' + esc(n) + '</li>').join('') + '</ul>' : '<p class="sub">No notes.</p>') + '</div></section>';
+  });
+  v.innerHTML = html;
+  const id = route.params.get('id');
+  if (id) {
+    const el = document.getElementById('note-' + id);
+    if (el) { el.classList.add('hl'); requestAnimationFrame(() => el.scrollIntoView({ block: 'start' })); setTimeout(() => el.classList.remove('hl'), 2500); }
+  }
+}
+
+/* ---------------- Numbers ---------------- */
+function renderNumbers() {
+  const v = $('[data-view="numbers"]');
+  let html = '<div class="view-head"><h1>Key numbers</h1></div>';
+  if (!CASE.numbers.length) html += '<div class="card empty">No key numbers in this case file.</div>';
+  CASE.numbers.forEach((g) => {
+    html += '<section class="num-group"><h2>' + esc(g.group) + '</h2><div class="num-grid">' + g.items.map((it) => '<div class="num"><div class="lb">' + esc(it.label) + '</div><div class="vl">' + esc(it.value) + '</div>' + (it.note ? '<div class="nt">' + esc(it.note) + '</div>' : '') + '</div>').join('') + '</div></section>';
+  });
+  v.innerHTML = html;
+}
+
+/* ---------------- Search ---------------- */
+function searchAll(q) {
+  const ql = q.toLowerCase();
+  const has = (s) => String(s || '').toLowerCase().includes(ql);
+  const qa = CASE.qa.filter((x) => has(x.q) || has(x.cat) || has(x.tip) || has(x.ref) || x.a.some(has));
+  const secs = CASE.sections.filter((s) => has(s.title) || s.notes.some(has));
+  const nums = [];
+  CASE.numbers.forEach((g) => g.items.forEach((it) => { if (has(g.group) || has(it.label) || has(it.value) || has(it.note)) nums.push({ g, it }); }));
+  return { qa, secs, nums, has };
+}
+function renderSearchResults() {
+  const box = $('#search-results'); if (!box) return;
+  const q = (route.params.get('q') || '').trim();
+  if (!q) { box.innerHTML = '<p class="empty">Type to search questions, answers, tips, speaker notes and key numbers.</p>'; return; }
+  const { qa, secs, nums, has } = searchAll(q);
+  const total = qa.length + secs.length + nums.length;
+  let html = '<p class="sub" role="status">' + total + ' result' + (total === 1 ? '' : 's') + ' for “' + esc(q) + '”</p>';
+  if (qa.length) {
+    html += '<div class="res-group"><h2>Q&amp;A (' + qa.length + ')</h2>' + qa.map((x) => {
+      const hits = x.a.filter(has).slice(0, 2);
+      if (has(x.tip)) hits.push('Tip: ' + x.tip);
+      if (has(x.ref)) hits.push('Ref: ' + x.ref);
+      return '<button type="button" class="res" data-action="open-qa" data-id="' + esc(x.id) + '"><div class="t">' + hl(x.q, q) + '</div><div class="s"><span class="badge pink">' + hl(x.cat, q) + '</span> ' + hits.map((h) => hl(h, q)).join(' · ') + '</div></button>';
+    }).join('') + '</div>';
+  }
+  if (secs.length) {
+    html += '<div class="res-group"><h2>Notes (' + secs.length + ')</h2>' + secs.map((s) => '<button type="button" class="res" data-action="open-sec" data-id="' + esc(s.id) + '"><div class="t">' + hl(s.title, q) + '</div><div class="s">' + s.notes.filter(has).slice(0, 3).map((n) => hl(n, q)).join('<br>') + '</div></button>').join('') + '</div>';
+  }
+  if (nums.length) {
+    html += '<div class="res-group"><h2>Key numbers (' + nums.length + ')</h2>' + nums.map(({ g, it }) => '<button type="button" class="res" data-action="open-num"><div class="t">' + hl(it.label, q) + ': ' + hl(it.value, q) + '</div><div class="s">' + hl(g.group, q) + (it.note ? ' · ' + hl(it.note, q) : '') + '</div></button>').join('') + '</div>';
+  }
+  if (!total) html += '<p class="empty">No matches. Try a shorter word.</p>';
+  box.innerHTML = html;
+}
+function renderSearch() {
+  const v = $('[data-view="search"]');
+  const q = route.params.get('q') || '';
+  if (!$('#psearch', v)) {
+    v.innerHTML = '<div class="view-head"><h1>Search</h1></div><div class="psearch" role="search">' + ICON.search + '<input type="search" id="psearch" placeholder="Search Q&amp;A, notes, numbers" aria-label="Search Q&amp;A, notes and numbers" autocomplete="off" enterkeyhint="search"></div><div id="search-results"></div>';
+    $('#psearch').addEventListener('input', (e) => onSearchInput(e.target.value));
+  }
+  const ps = $('#psearch'); if (document.activeElement !== ps) ps.value = q;
+  const hs = $('#hsearch'); if (document.activeElement !== hs) hs.value = q;
+  renderSearchResults();
+}
+function onSearchInput(val) {
+  const params = val ? { q: val } : null;
+  if (route.r !== 'search') { go('search', params); return; }
+  replaceRoute('search', params);
+  route = parseHash();
+  const ps = $('#psearch'), hs = $('#hsearch');
+  if (ps && document.activeElement !== ps) ps.value = val;
+  if (document.activeElement !== hs) hs.value = val;
+  renderSearchResults();
+}
+$('#hsearch').addEventListener('input', (e) => { if (!CASE) { toast('Load a case first.'); return; } onSearchInput(e.target.value); });
+$('#hsearch').addEventListener('keydown', (e) => { if (e.key === 'Escape') { e.target.value = ''; onSearchInput(''); } });
+
+/* ---------------- Load / settings ---------------- */
+function renderLoad() {
+  const v = $('[data-view="load"]');
+  const t = getTheme();
+  let html = '<div class="view-head"><h1>Case &amp; settings</h1></div>';
+  if (loadMsg) html += '<div class="' + (loadMsg.type === 'error' ? 'alert' : 'info') + '" role="alert">' + loadMsg.html + '</div>';
+  html += '<div class="set-grid">';
+  html += '<div class="card wide"><h2>Case file</h2>';
+  if (CASE) {
+    html += '<div class="case-title">' + esc(CASE.title) + '</div><div class="kv">' + [CASE.presenter, CASE.date].filter(Boolean).map(esc).join(' · ') + '</div><div class="kv" style="margin:4px 0 12px">' + CASE.sections.length + ' sections · ' + CASE.qa.length + ' questions · ' + CASE.numbers.reduce((a, g) => a + g.items.length, 0) + ' key numbers</div>';
+  } else {
+    html += '<div class="welcome" style="margin-bottom:12px"><img src="icon-192.png" alt="" width="64" height="64"><div><strong>Welcome!</strong> Open your private case file (.json) to start rehearsing, or try the fictional demo case first.</div></div>';
+  }
+  html += '<div class="row"><button type="button" class="btn primary big" data-action="open-file">Open case file</button><button type="button" class="btn big" data-action="use-demo">Use demo case</button>' + (CASE ? '<button type="button" class="btn ghost danger" data-action="clear-case">Clear case</button>' : '') + '</div>';
+  html += '<p class="sub" style="margin-top:12px">Privacy: your case file is read on this device and kept only in this browser’s storage. It is never uploaded anywhere. Clear it here when you are done. <a href="demo-case.json" download="case-template.json">Download the demo file</a> as a template.</p></div>';
+  html += '<div class="card"><h2>Appearance</h2><h3 class="sub" style="margin:0 0 6px">Theme</h3><div class="seg" role="group" aria-label="Theme">' + [['auto', 'Auto'], ['light', 'Light'], ['dark', 'Dark']].map(([k, l]) => '<button type="button" data-action="set-theme" data-theme="' + k + '" aria-pressed="' + (t === k) + '">' + l + '</button>').join('') + '</div><h3 class="sub" style="margin:14px 0 6px">Reading text size</h3>' + fsCtl() + '</div>';
+  html += '<div class="card"><h2>Grill mode</h2><h3 class="sub" style="margin:0 0 6px">Default seconds per question</h3>' + secSeg('set-sec') + '</div>';
+  if (CASE) {
+    const n = { new: 0, rev: 0, got: 0 }; CASE.qa.forEach((q) => { n[stat(q.id)]++; });
+    html += '<div class="card"><h2>Progress</h2><div class="counts" style="margin-bottom:12px"><span class="count new">New ' + n.new + '</span><span class="count rev">Review ' + n.rev + '</span><span class="count got">Got it ' + n.got + '</span></div><button type="button" class="btn danger" data-action="reset-progress">Reset progress</button><p class="sub" style="margin-top:8px">Clears flashcard boxes and presentation timer times.</p></div>';
+  }
+  html += '<div class="card' + (CASE ? '' : ' wide') + '"><h2>About</h2><p>Case Rehearsal helps you practise a case presentation: flashcards for likely questions, timed mock grilling, a section-by-section presentation timer with speaker notes, and your key numbers at a glance.</p><p class="sub">Works offline after the first visit. Add it to your Home Screen from the Share menu. Version ' + esc(VERSION) + '.</p></div>';
+  html += '</div>';
+  v.innerHTML = html;
+}
+async function loadFromText(text, sourceName) {
+  let obj;
+  try { obj = JSON.parse(text); } catch (e) {
+    loadMsg = { type: 'error', html: '<strong>Could not read “' + esc(sourceName) + '”.</strong> It is not valid JSON. Check for missing commas, quotes or brackets.<br><span class="sub">' + esc(e.message) + '</span>' };
+    go('load'); renderLoad(); return false;
+  }
+  const r = validateCase(obj);
+  if (!r.ok) {
+    loadMsg = { type: 'error', html: '<strong>“' + esc(sourceName) + '” does not match the case file format.</strong><ul>' + r.errors.map((x) => '<li>' + esc(x) + '</li>').join('') + '</ul>' };
+    go('load'); renderLoad(); return false;
+  }
+  const saved = setCase(r.data);
+  loadMsg = null;
+  toast(saved ? 'Loaded “' + r.data.title + '”.' : 'Loaded for this session only (browser storage is unavailable).');
+  go('cards');
+  return true;
+}
+$('#file-input').addEventListener('change', async (e) => {
+  const f = e.target.files && e.target.files[0];
+  e.target.value = '';
+  if (!f) return;
+  if (f.size > 5 * 1024 * 1024) { loadMsg = { type: 'error', html: '<strong>That file is too large.</strong> Case files should be under 5 MB.' }; renderLoad(); return; }
+  let text;
+  try { text = await f.text(); } catch (err) { loadMsg = { type: 'error', html: '<strong>Could not open the file.</strong> Please try again.' }; renderLoad(); return; }
+  loadFromText(text, f.name);
+});
+async function useDemo() {
+  try {
+    const res = await fetch('demo-case.json', { cache: 'no-cache' });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    await loadFromText(await res.text(), 'demo-case.json');
+  } catch (e) {
+    loadMsg = { type: 'error', html: '<strong>Could not load the demo case.</strong> Connect to the internet once so the app can save it for offline use.' };
+    renderLoad();
+  }
+}
+
+/* ---------------- Event delegation ---------------- */
+document.addEventListener('click', (e) => {
+  const b = e.target.closest('[data-action]'); if (!b) return;
+  const a = b.dataset.action;
+  switch (a) {
+    case 'fs-': changeFs(-0.1); break;
+    case 'fs+': changeFs(0.1); break;
+    case 'card-cat': cardsSt.cat = b.dataset.cat; cardsSt.id = null; if (route.params.get('id')) { replaceRoute('cards'); route = parseHash(); } renderCards(); break;
+    case 'card-open': cardsSt.id = b.dataset.id; cardsSt.revealed = false; if (route.params.get('id')) { replaceRoute('cards'); route = parseHash(); } renderCards(); if (matchMedia('(max-width: 767px)').matches) { cardsSt.listOpen = false; renderCards(); window.scrollTo(0, 0); } break;
+    case 'card-show': cardsSt.revealed = true; renderCards(); break;
+    case 'card-got': cardMark(true); break;
+    case 'card-review': cardMark(false); break;
+    case 'card-prev': cardStep(-1); break;
+    case 'card-next': cardStep(1); break;
+    case 'card-list': cardsSt.listOpen = !cardsSt.listOpen; renderCards(); break;
+    case 'grill-cat': { const cs = grillCats(); const c = b.dataset.cat; const i = cs.indexOf(c); if (i >= 0) cs.splice(i, 1); else cs.push(c); renderGrill(); break; }
+    case 'grill-all': grill.cats = cats().slice(); renderGrill(); break;
+    case 'grill-none': grill.cats = []; renderGrill(); break;
+    case 'grill-sec': case 'set-sec': PREFS.grillSec = +b.dataset.sec; savePrefs(); if (a === 'grill-sec') renderGrill(); else renderLoad(); break;
+    case 'grill-start': unlockAudio(); grill.asked = 0; grill.correct = 0; grill.used = []; grill.qid = null; grillNext(); break;
+    case 'grill-reveal': grillStop(); grill.revealed = true; renderGrill(); break;
+    case 'grill-hit': case 'grill-miss': grill.asked++; if (a === 'grill-hit') grill.correct++; grill.scored = true; grillNext(); break;
+    case 'grill-next': unlockAudio(); grillNext(); break;
+    case 'grill-end': grillStop(); grill.active = false; renderGrill(); toast('Session score: ' + grill.correct + ' / ' + grill.asked); break;
+    case 't-toggle': if (T.running) timerPause(); else timerStart(); break;
+    case 't-prev': timerGo(T.idx - 1); break;
+    case 't-next': timerGo(T.idx + 1); break;
+    case 't-go': timerGo(+b.dataset.i); break;
+    case 't-reset': timerReset(); break;
+    case 'open-qa': go('cards', { id: b.dataset.id, show: '1' }); break;
+    case 'open-sec': go('notes', { id: b.dataset.id }); break;
+    case 'open-num': go('numbers'); break;
+    case 'open-file': $('#file-input').click(); break;
+    case 'use-demo': useDemo(); break;
+    case 'clear-case':
+      if (!confirm('Remove the case file and progress from this device?')) break;
+      timerPause(); store.del(K.caseData); store.del(K.progress); CASE = null; PROG = { caseKey: '', box: {}, timer: null }; loadMsg = { type: 'ok', html: 'Case cleared from this device.' }; resetTransient(); go('load'); renderLoad(); break;
+    case 'reset-progress':
+      if (!confirm('Reset flashcard progress and timer times?')) break;
+      timerPause(); PROG = { caseKey: caseKeyOf(CASE), box: {}, timer: null }; saveProg(); T.el = CASE.sections.map(() => 0); T.idx = 0; renderLoad(); toast('Progress reset.'); break;
+    case 'set-theme': setTheme(b.dataset.theme); break;
+  }
+});
+document.addEventListener('keydown', (e) => {
+  if (e.target.closest('input, textarea, select') || e.metaKey || e.ctrlKey || e.altKey) return;
+  if (route.r === 'timer' && CASE) {
+    if (e.key === ' ' && !e.target.closest('button')) { e.preventDefault(); T.running ? timerPause() : timerStart(); }
+    else if (e.key === 'ArrowRight') timerGo(T.idx + 1);
+    else if (e.key === 'ArrowLeft') timerGo(T.idx - 1);
+  }
+});
+window.addEventListener('pagehide', () => { if (CASE && T.running) { timerAccum(); timerPersist(); } });
+
+/* ---------------- Boot ---------------- */
+(function boot() {
+  resetTransient();
+  const st = history.state;
+  if (st && typeof st.idx === 'number') { navIdx = st.idx; navMax = Math.max(navIdx, parseInt(sstore.get(K.navmax) || '0', 10) || 0); }
+  else { navIdx = 0; navMax = 0; history.replaceState({ idx: 0 }, '', location.href); }
+  saveNavMax();
+  render();
+})();
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    const hadController = !!navigator.serviceWorker.controller;
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      if (hadController) toast('A new version is ready.', 'Reload', () => location.reload());
+    });
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,268 @@
+{
+  "v": 1,
+  "title": "Demo case — fictional patient 'Juan'",
+  "presenter": "Demo Presenter (fictional)",
+  "date": "2026-10-25",
+  "sections": [
+    {
+      "id": "s1",
+      "title": "Identifying data",
+      "minutes": 1.5,
+      "notes": [
+        "This is a FICTIONAL teaching case created for the demo. Juan is not a real person.",
+        "Juan, 28-year-old single man, call-center agent, first psychiatric admission.",
+        "Brought in by his older sister; informants: patient (fair reliability) and sister (good reliability)."
+      ]
+    },
+    {
+      "id": "s2",
+      "title": "Chief complaint",
+      "minutes": 1,
+      "notes": [
+        "Sister: \"He has not slept for a week and says the neighbors are recording him.\"",
+        "Patient: \"I just need them to stop listening to my thoughts.\""
+      ]
+    },
+    {
+      "id": "s3",
+      "title": "History of present illness",
+      "minutes": 8,
+      "notes": [
+        "About 4 months PTA: social withdrawal after night-shift schedule change; stopped calling friends.",
+        "About 6 weeks PTA: started believing coworkers were reading his messages; locked his phone in a drawer.",
+        "About 2 weeks PTA: heard two male voices commenting on his actions, worse at night.",
+        "1 week PTA: decreased sleep (2–3 hours), poor intake, stopped going to work.",
+        "Day of admission: barricaded his room door; sister brought him to the ER.",
+        "Pertinent negatives: no mood elevation, no head trauma, no seizures, denies substance use (UDS pending at the time)."
+      ]
+    },
+    {
+      "id": "s4",
+      "title": "Past psychiatric history",
+      "minutes": 3,
+      "notes": [
+        "No previous consults or admissions.",
+        "No prior self-harm; denies current suicidal or homicidal ideation (reassessed daily).",
+        "Occasional alcohol on weekends; no other substances by history."
+      ]
+    },
+    {
+      "id": "s5",
+      "title": "Medical, family and personal history",
+      "minutes": 5,
+      "notes": [
+        "Medical: unremarkable; no maintenance medications.",
+        "Family: paternal uncle 'had a nervous breakdown' in his 20s, details unknown.",
+        "Personal: college graduate, described as quiet but sociable; good premorbid functioning."
+      ]
+    },
+    {
+      "id": "s6",
+      "title": "Mental status examination",
+      "minutes": 5,
+      "notes": [
+        "Appearance: thin, unkempt, guarded, glances at the ceiling vent.",
+        "Speech: low volume, latency of response; thought process mostly goal-directed with occasional tangentiality.",
+        "Thought content: persecutory delusions, thought broadcasting.",
+        "Perception: second-person and third-person auditory hallucinations.",
+        "Mood \"scared\"; affect constricted, congruent. Oriented ×3. Insight: impaired (grade 2). Judgment: impaired."
+      ]
+    },
+    {
+      "id": "s7",
+      "title": "Laboratory and workup",
+      "minutes": 3,
+      "notes": [
+        "CBC, electrolytes, glucose, creatinine, TSH all within normal limits.",
+        "Urine drug screen negative; HIV and syphilis screen nonreactive.",
+        "Cranial CT: no acute findings. Baseline ECG: QTc 412 ms."
+      ]
+    },
+    {
+      "id": "s8",
+      "title": "Diagnostic formulation",
+      "minutes": 6,
+      "notes": [
+        "Working diagnosis: schizophreniform disorder (symptoms > 1 month, < 6 months), provisional.",
+        "Biological: possible family loading; sleep deprivation as precipitant.",
+        "Psychological: high stress, limited coping, social withdrawal.",
+        "Social: night shift, living alone, recent loss of peer contact."
+      ]
+    },
+    {
+      "id": "s9",
+      "title": "Management and course",
+      "minutes": 6,
+      "notes": [
+        "Started risperidone 1 mg at night, titrated to 3 mg/day by day 5.",
+        "Sleep normalized by day 4; voices less frequent by day 10.",
+        "Psychoeducation with sister; discharge on day 14 with weekly follow-up."
+      ]
+    },
+    {
+      "id": "s10",
+      "title": "Discussion and learning points",
+      "minutes": 6.5,
+      "notes": [
+        "Duration criteria separate brief psychotic disorder, schizophreniform disorder and schizophrenia.",
+        "Rule out medical and substance causes before labeling a primary psychotic disorder.",
+        "Shorter duration of untreated psychosis is linked to better outcomes."
+      ]
+    }
+  ],
+  "qa": [
+    {
+      "id": "q1",
+      "cat": "Diagnosis",
+      "q": "Why schizophreniform disorder and not schizophrenia?",
+      "a": [
+        "Total duration of illness, including prodrome, is about 4 months.",
+        "Schizophrenia requires continuous signs for at least 6 months.",
+        "Labeled provisional because recovery is not yet established."
+      ],
+      "tip": "Lead with the duration criterion, then mention the provisional specifier.",
+      "ref": "DSM-5-TR, Schizophrenia Spectrum and Other Psychotic Disorders"
+    },
+    {
+      "id": "q2",
+      "cat": "Diagnosis",
+      "q": "Why not brief psychotic disorder?",
+      "a": [
+        "Brief psychotic disorder lasts at least 1 day but less than 1 month.",
+        "Juan's psychotic symptoms have been present for more than 1 month."
+      ]
+    },
+    {
+      "id": "q3",
+      "cat": "Differential",
+      "q": "What medical causes of psychosis did you rule out, and how?",
+      "a": [
+        "Thyroid disease: normal TSH.",
+        "Infection: HIV and syphilis screens nonreactive.",
+        "Structural lesion: cranial CT without acute findings.",
+        "Metabolic: normal electrolytes and glucose."
+      ],
+      "tip": "Group them by system so it sounds organized."
+    },
+    {
+      "id": "q4",
+      "cat": "Differential",
+      "q": "How did you exclude a mood disorder with psychotic features?",
+      "a": [
+        "No sustained elevated or depressed mood episode by history.",
+        "Psychotic symptoms occurred without a concurrent major mood episode."
+      ]
+    },
+    {
+      "id": "q5",
+      "cat": "Differential",
+      "q": "Could this be substance-induced psychosis?",
+      "a": [
+        "Urine drug screen negative.",
+        "Only occasional weekend alcohol; no withdrawal signs.",
+        "Symptoms persisted well beyond any plausible intoxication period."
+      ]
+    },
+    {
+      "id": "q6",
+      "cat": "Management",
+      "q": "Why risperidone as the first-line agent?",
+      "a": [
+        "Effective for positive symptoms in first-episode psychosis.",
+        "Available locally and affordable; long-acting injectable option exists later.",
+        "Start low, go slow in antipsychotic-naive patients."
+      ],
+      "tip": "Mention patient factors and availability, not just efficacy.",
+      "ref": "Stahl's Essential Psychopharmacology, antipsychotics chapter"
+    },
+    {
+      "id": "q7",
+      "cat": "Pharmacology",
+      "q": "What side effects do you monitor on risperidone?",
+      "a": [
+        "Extrapyramidal symptoms and akathisia.",
+        "Hyperprolactinemia: sexual dysfunction, gynecomastia.",
+        "Metabolic: weight, waist, fasting glucose and lipids.",
+        "QTc at baseline and if dose increases."
+      ]
+    },
+    {
+      "id": "q8",
+      "cat": "Pharmacology",
+      "q": "How long would you continue the antipsychotic after remission?",
+      "a": [
+        "Common practice after a first episode: at least 1 to 2 years.",
+        "Decide jointly with patient and family; taper slowly if discontinued."
+      ]
+    },
+    {
+      "id": "q9",
+      "cat": "Formulation",
+      "q": "What were the precipitating and perpetuating factors?",
+      "a": [
+        "Precipitating: night-shift change and sleep deprivation.",
+        "Perpetuating: social isolation, impaired insight, living alone."
+      ]
+    },
+    {
+      "id": "q10",
+      "cat": "Formulation",
+      "q": "What are Juan's protective factors?",
+      "a": [
+        "Supportive sister, good premorbid functioning, college education.",
+        "Acute onset and short duration of untreated psychosis."
+      ]
+    },
+    {
+      "id": "q11",
+      "cat": "Ethics/Legal",
+      "q": "Was the admission voluntary? How was capacity assessed?",
+      "a": [
+        "Fictional demo answer: admitted with patient's assent and family consent.",
+        "Capacity assessed on understanding, appreciation, reasoning and expressing a choice."
+      ],
+      "tip": "Know your hospital's actual admission policy for the real case."
+    },
+    {
+      "id": "q12",
+      "cat": "Ethics/Legal",
+      "q": "How do you handle confidentiality when the sister calls for updates?",
+      "a": [
+        "Obtain the patient's consent on what may be shared.",
+        "Share general information needed for safety and aftercare planning."
+      ]
+    }
+  ],
+  "numbers": [
+    {
+      "group": "Timeline",
+      "items": [
+        { "label": "Prodrome onset", "value": "~4 months PTA" },
+        { "label": "Voices began", "value": "~2 weeks PTA" },
+        { "label": "Length of stay", "value": "14 days" }
+      ]
+    },
+    {
+      "group": "Labs",
+      "items": [
+        { "label": "TSH", "value": "1.8 mIU/L", "note": "normal" },
+        { "label": "Potassium", "value": "4.1 mmol/L" },
+        { "label": "QTc", "value": "412 ms", "note": "baseline ECG" },
+        { "label": "UDS", "value": "Negative" }
+      ]
+    },
+    {
+      "group": "Medications",
+      "items": [
+        { "label": "Risperidone start", "value": "1 mg at night" },
+        { "label": "Risperidone at discharge", "value": "3 mg/day", "note": "reached by day 5" }
+      ]
+    },
+    {
+      "group": "Scales",
+      "items": [
+        { "label": "BPRS admission → discharge", "value": "58 → 31", "note": "fictional values" }
+      ]
+    }
+  ]
+}

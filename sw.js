@@ -1,6 +1,7 @@
 /* Case Rehearsal service worker — cache-first, fully offline.
    Keep VERSION in sync with the VERSION constant in index.html. */
-const VERSION = 'rehearse-2026-10-25-1';
+const PREFIX = 'rehearse-';   // this app's own caches only — never clear other apps' caches (shared origin)
+const VERSION = PREFIX + '2026-11-06-1';
 const CACHE = VERSION;
 const ASSETS = [
   './',
@@ -23,7 +24,7 @@ self.addEventListener('install', (event) => {
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys()
-      .then((keys) => Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k))))
+      .then((keys) => Promise.all(keys.filter((k) => k.startsWith(PREFIX) && k !== CACHE).map((k) => caches.delete(k))))
       .then(() => self.clients.claim())
   );
 });
